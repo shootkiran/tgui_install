@@ -33,7 +33,7 @@ function check_repo() {
   fi
 }
 function check_php() {
-  echo $(php -v | grep -oE "(PHP 7\.3|)" | wc -l | tr -d '[:space:]'); return;
+  echo $(php -v | grep -oE "(PHP 7\.4|)" | wc -l | tr -d '[:space:]'); return;
 }
 function check_pip() {
   echo $(pip --version > /dev/null 2>&1 && echo 1 || echo 0); return;
@@ -184,7 +184,7 @@ function system_test() {
 
   let "RESULT_TOTAL+=1";
   if [[ $(check_php) -eq 0 ]]; then
-    error_message "Error! PHP 7.3 Not Installed! Try to install.";
+    error_message "Error! PHP 7.4 Not Installed! Try to install.";
     if [[ $(sudo apt-cache search php7.4 | wc -l) == 0 ]]; then
     	sudo apt-get install software-properties-common -y
     	sudo add-apt-repository ppa:ondrej/php -y
@@ -193,10 +193,10 @@ function system_test() {
     sudo apt-get install -y php7.4 php7.4-common php7.4-cli php7.4-fpm php7.4-curl php7.4-dev php7.4-gd php7.4-mbstring php7.4-zip php7.4-mysql php7.4-xml libapache2-mod-php7.4 php7.4-ldap
     sudo a2dismod php7.*; sudo a2enmod php7.4; sudo service apache2 restart
     if [[ $(check_php) -eq 0 ]]; then
-      error_message "Error! PHP 7.3 Not Installed!"; let "RESULT_ERRORS+=1";
+      error_message "Error! PHP 7.4 Not Installed!"; let "RESULT_ERRORS+=1";
       return;
     fi
-  else echo "Done.  ### PHP 7.3 Installed  ###"; echo; let "RESULT_SUCCESS+=1";
+  else echo "Done.  ### PHP 7.4 Installed  ###"; echo; let "RESULT_SUCCESS+=1";
   fi
 
   let "RESULT_TOTAL+=1";

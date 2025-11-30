@@ -185,13 +185,13 @@ function system_test() {
   let "RESULT_TOTAL+=1";
   if [[ $(check_php) -eq 0 ]]; then
     error_message "Error! PHP 7.3 Not Installed! Try to install.";
-    if [[ $(sudo apt-cache search php7.3 | wc -l) == 0 ]]; then
+    if [[ $(sudo apt-cache search php7.4 | wc -l) == 0 ]]; then
     	sudo apt-get install software-properties-common -y
     	sudo add-apt-repository ppa:ondrej/php -y
     	sudo apt-get update
     fi
-    sudo apt-get install -y php7.3 php7.3-common php7.3-cli php7.3-fpm php7.3-curl php7.3-dev php7.3-gd php7.3-mbstring php7.3-zip php7.3-mysql php7.3-xml libapache2-mod-php7.3 php7.3-ldap
-    sudo a2dismod php7.*; sudo a2enmod php7.3; sudo service apache2 restart
+    sudo apt-get install -y php7.4 php7.4-common php7.4-cli php7.4-fpm php7.4-curl php7.4-dev php7.4-gd php7.4-mbstring php7.4-zip php7.4-mysql php7.4-xml libapache2-mod-php7.4 php7.4-ldap
+    sudo a2dismod php7.*; sudo a2enmod php7.4; sudo service apache2 restart
     if [[ $(check_php) -eq 0 ]]; then
       error_message "Error! PHP 7.3 Not Installed!"; let "RESULT_ERRORS+=1";
       return;
